@@ -20,6 +20,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.logixs.logixsqr.ui.WebView.WebViewFragment
 import com.logixs.logixsqr.ui.home.HomeFragment
 import com.logixs.logixsqr.ui.perfil.PerfilFragment
 import com.logixs.logixsqr.ui.qr_entrega.QrCargaFragment
@@ -201,7 +202,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_perfil -> {
                 abrirFragment(PerfilFragment(), item.title)
             }
+            R.id.nav_misViajes -> {
 
+                abrirFragment(WebViewFragment(SharedPref.getPathUsuario(this),SharedPref.getIdUsuario(this)), item.title)
+            }
             R.id.nav_ayuda -> {
                 abrirAyuda()
             }

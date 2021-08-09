@@ -155,12 +155,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/fragment_vertical_space"
         android:background="@drawable/border_edittext"
-        android:textColor="@color/colorTexto"
         android:ems="10"
         android:hint="@string/lbl_nombre_recibe"
         android:inputType="textPersonName"
         android:padding="@dimen/button_padding"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/colorTexto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -176,8 +176,8 @@
         android:hint="@string/lbl_dni_recibe"
         android:inputType="number"
         android:padding="@dimen/button_padding"
-        android:textColor="@color/colorTexto"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/colorTexto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txv_estado" />
@@ -196,4 +196,51 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/img_reset" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/img_reset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_estado">
+        android:checkedButton="@+id/radEntregadoOk"
+
+        <RadioButton
+            android:id="@+id/radEntregadoOk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rad_EntregadoOk" />
+
+        <RadioButton
+            android:id="@+id/rad_noEntregado1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rad_noEntregado1" />
+
+        <RadioButton
+            android:id="@+id/rad_noEntregado2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rad_noEntregado2" />
+
+        <RadioButton
+            android:id="@+id/rad_noEntregado3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rad_noEntregado3" />
+
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

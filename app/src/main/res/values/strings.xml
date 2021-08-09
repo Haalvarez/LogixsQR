@@ -57,5 +57,10 @@
     <string name="string_campo_no_completado">-</string>
     <string name="lbl_dni_recibe">DNI de quien recibe</string>
     <string name="lbl_nombre_recibe">Nombre de quien recibe</string>
-
+    <string name="rad_EntregadoOk">Entregado OK</string>
+    <string name="rad_noEntregado1">Nadie en Domicilio</string>
+    <string name="rad_noEntregado2">Domicilio Inex</string>
+    <string name="rad_noEntregado3">Falta de tiempo</string>
+    <string name="msg_nuevo_Token" formatted="true" translatable="false">msg_nuevo_Token</string>
+    <string name="menu_MisViajes">Mis Viajes</string>
 </resources>

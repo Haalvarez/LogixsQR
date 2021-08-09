@@ -14,6 +14,9 @@
             android:id="@+id/nav_perfil"
             android:icon="@drawable/persona"
             android:title="@string/menu_mi_perfil" />
+        <item  android:id="@+id/nav_misViajes"
+            android:icon="@drawable/persona"
+            android:title="@string/menu_MisViajes"  />
         <item
             android:id="@+id/nav_qr_retiro"
             android:icon="@drawable/qr_retiro_circular"

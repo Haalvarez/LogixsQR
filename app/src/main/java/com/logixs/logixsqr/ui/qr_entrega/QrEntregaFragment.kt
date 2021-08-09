@@ -10,9 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import android.util.SparseArray
 import android.view.*
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
@@ -52,6 +50,13 @@ class QrEntregaFragment : Fragment() {
     lateinit var txtDniRecibe: EditText
     lateinit var txtNombreRecibe: EditText
     lateinit var imgReset: ImageView
+    //
+    lateinit var txtEntregaNormal: RadioButton
+    lateinit var txtCausaNoEntrega1: RadioButton
+    lateinit var txtCausaNoEntrega2: RadioButton
+    lateinit var txtCausaNoEntrega3: RadioButton
+
+    //
     private lateinit var db: AppDatabase
     var solicitudPreviaFinalizada = true
     var ultimoIdEnvio = ""
@@ -68,7 +73,15 @@ class QrEntregaFragment : Fragment() {
         }
 
         val root = inflater.inflate(R.layout.fragment_qr_entrega, container, false)
-
+        //
+        var q1 = root.findViewById(R.id.radiogroup) as RadioGroup
+        q1.check(R.id.radEntregadoOk)
+        var radioGroup = root.findViewById(R.id.radiogroup) as RadioGroup
+        txtEntregaNormal=root.findViewById(R.id.radEntregadoOk)
+        txtCausaNoEntrega1=root.findViewById(R.id.rad_noEntregado1)
+        txtCausaNoEntrega2=root.findViewById(R.id.rad_noEntregado2)
+        txtCausaNoEntrega3=root.findViewById(R.id.rad_noEntregado3)
+        //
 
         txvIdVendedor = root.findViewById(R.id.txv_id_vendedor)
         txvNicknameVendedor = root.findViewById(R.id.txv_nickname_vendedor)
@@ -389,6 +402,23 @@ class QrEntregaFragment : Fragment() {
                 params["recibeDNI"] = txtDniRecibe.text.toString()
                 params["RecibeNombre"] = txtNombreRecibe.text.toString()
 
+                //
+                if(txtEntregaNormal.isChecked){
+                    params["EntregaExitosa"] = "true"
+                }else{
+                    params["EntregaExitosa"] = "false"
+                    if(txtCausaNoEntrega1.isChecked){
+                        params["RazonNoEntrega"] = txtCausaNoEntrega1.text.toString()
+                    }
+                    if(txtCausaNoEntrega2.isChecked){
+                        params["RazonNoEntrega"] = txtCausaNoEntrega2.text.toString()
+                    }
+
+                    if(txtCausaNoEntrega3.isChecked){
+                        params["RazonNoEntrega"] = txtCausaNoEntrega3.text.toString()
+                    }
+                }
+                //
                 return params
             }
         }
