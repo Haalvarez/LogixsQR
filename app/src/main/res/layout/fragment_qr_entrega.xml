@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorFondo"
+    android:padding="@dimen/fragment_paddig"
+    tools:context=".ui.qr_entrega.QrCargaFragment">
+    <!--
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/lbl_nombre_recibe"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/lbl_dni_recibe"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+    -->
+
+
+    <SurfaceView
+        android:id="@+id/camera_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="false"
+        android:layout_centerVertical="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".25"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/lbl_paquete_id"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera_view" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/lbl_vendedor_nombre"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/txv_id_vendedor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/string_campo_no_completado"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/camera_view" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/lbl_estado"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/txv_nickname_vendedor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/string_campo_no_completado"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/txv_id_vendedor" />
+
+    <TextView
+        android:id="@+id/txv_estado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/string_campo_no_completado"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/txv_nickname_vendedor" />
+
+    <ImageView
+        android:id="@+id/img_estado"
+        android:layout_width="@dimen/image_result"
+        android:layout_height="@dimen/image_result"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nombre_recibe" />
+
+    <TextView
+        android:id="@+id/txv_contador"
+        android:layout_width="@dimen/textview_contador_size"
+        android:layout_height="@dimen/textview_contador_size"
+        android:layout_marginBottom="@dimen/textview_contador_margin"
+        android:background="@drawable/circular"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/colorFondo"
+        android:textSize="@dimen/textview_contador_textsize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/img_reset"
+        android:layout_width="@dimen/textview_contador_size"
+        android:layout_height="@dimen/textview_contador_size"
+        android:layout_marginEnd="@dimen/textview_contador_margin"
+        android:layout_marginBottom="@dimen/textview_contador_margin"
+        android:background="@drawable/circular"
+        android:cropToPadding="false"
+        android:padding="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/txv_contador" />
+
+    <EditText
+        android:id="@+id/txt_nombre_recibe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:background="@drawable/border_edittext"
+        android:textColor="@color/colorTexto"
+        android:ems="10"
+        android:hint="@string/lbl_nombre_recibe"
+        android:inputType="textPersonName"
+        android:padding="@dimen/button_padding"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_dni_recibe" />
+
+    <EditText
+        android:id="@+id/txt_dni_recibe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:background="@drawable/border_edittext"
+        android:ems="10"
+        android:hint="@string/lbl_dni_recibe"
+        android:inputType="number"
+        android:padding="@dimen/button_padding"
+        android:textColor="@color/colorTexto"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txv_estado" />
+
+    <ImageButton
+        android:id="@+id/img_linterna"
+        android:layout_width="@dimen/textview_contador_size"
+        android:layout_height="@dimen/textview_contador_size"
+        android:layout_marginEnd="@dimen/textview_contador_margin"
+        android:layout_marginBottom="@dimen/textview_contador_margin"
+        android:background="@drawable/circular"
+        android:cropToPadding="false"
+        android:padding="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/linterna"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img_reset" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Logixs QR</string>
+
+    <string name="tx_usuario">DNI</string>
+    <string name="tx_password">Contraseña</string>
+    <string name="action_sign_in_short">Logixs QR</string>
+    <string name="btn_sign_in">Iniciar sesión</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Hola %1$s!</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Perfil usuario</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_mi_perfil">Mi perfil</string>
+    <string name="menu_qr_entrega">QR Entrega</string>
+    <string name="menu_qr_retiro">QR Retiro</string>
+    <string name="menu_qr_carga">QR Carga</string>
+    <string name="menu_cerrar_sesion">Cerrar sesión</string>
+    <string name="menu_ayuda">Ayuda</string>
+
+    <string name="mensaje_aceptar">Aceptar</string>
+    <string name="mensaje_error_conexion_servidor">Error</string>
+    <string name="mensaje_error_generico_servidor">Error</string>
+    <string name="mensaje_error_usuario_contrasenia">El DNI o contraseña es inválido</string>
+    <string name="mensaje_error_autenticacion">Hubo un error al validar los datos ingresados</string>
+    <string name="mensaje_error_permisos_camara">Se deben dar permisos de acceso a la cámara para escanear un QR</string>
+    <string name="mensaje_error_abrir_camara">Hubo un error al abrir la camara</string>
+    <string name="mensaje_error_mercado_libre">Hubo un error al obtener información de ML</string>
+    <string name="mensaje_campos_recibe_incompletos">Se requiere DNI y Nombre de quien recibe</string>
+    <string name="mensaje_error_registro_qr">Hubo un error al registrar la información del QR</string>
+    <string name="mensaje_registro_qr_ok">Registrado!</string>
+    <string name="mensaje_no_hay_envios">No hay envíos</string>
+    <string name="mensaje_error_portapapeles">Error copiado en el portapapeles</string>
+
+    <string name="lbl_usuario">ID usuario</string>
+    <string name="lbl_nombre">Nombre</string>
+    <string name="lbl_apellido">Apellido</string>
+    <string name="lbl_apodo">Apodo</string>
+    <string name="lbl_empresa">Empresa</string>
+    <string name="lbl_nickname">Nickname ML</string>
+    <string name="lbl_perfil">Perfil</string>
+    <string name="lbl_operacion">Operación</string>
+    <string name="lbl_sender_id">Sender ID</string>
+    <string name="lbl_paquete_id">ID Paquete</string>
+    <string name="lbl_vendedor_nombre">Vendedor</string>
+    <string name="lbl_vacio">-</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="imagen_qr_entrega">Entregar</string>
+    <string name="imagen_qr_retiro">Retirar</string>
+    <string name="imagen_qr_carga">Cargar</string>
+    <string name="menu_inicio">Inicio</string>
+    <string name="lbl_estado">Estado</string>
+    <string name="string_campo_no_completado">-</string>
+    <string name="lbl_dni_recibe">DNI de quien recibe</string>
+    <string name="lbl_nombre_recibe">Nombre de quien recibe</string>
+
+</resources>

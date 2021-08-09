@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorFondo"
+    android:padding="@dimen/fragment_paddig"
+    tools:context=".ui.qr_entrega.QrCargaFragment">
+
+    <SurfaceView
+        android:id="@+id/camera_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="false"
+        android:layout_centerVertical="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".4"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/lbl_paquete_id"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera_view" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/lbl_vendedor_nombre"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/txv_id_vendedor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/string_campo_no_completado"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/camera_view" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/lbl_estado"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/txv_nickname_vendedor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/string_campo_no_completado"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/txv_id_vendedor" />
+
+    <TextView
+        android:id="@+id/txv_estado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_vertical_space"
+        android:text="@string/string_campo_no_completado"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/txv_nickname_vendedor" />
+
+    <TextView
+        android:id="@+id/txv_contador"
+        android:layout_width="@dimen/textview_contador_size"
+        android:layout_height="@dimen/textview_contador_size"
+        android:layout_marginEnd="@dimen/textview_contador_margin"
+        android:layout_marginRight="@dimen/textview_contador_margin"
+        android:layout_marginBottom="@dimen/textview_contador_margin"
+        android:background="@drawable/circular"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/colorFondo"
+        android:textSize="@dimen/textview_contador_textsize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_estado"
+        android:layout_width="@dimen/image_result"
+        android:layout_height="@dimen/image_result"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txv_estado" />
+
+    <ImageButton
+        android:id="@+id/img_reset"
+        android:layout_width="@dimen/textview_contador_size"
+        android:layout_height="@dimen/textview_contador_size"
+        android:layout_marginEnd="@dimen/textview_contador_margin"
+        android:layout_marginRight="@dimen/textview_contador_margin"
+        android:layout_marginBottom="@dimen/textview_contador_margin"
+        android:background="@drawable/circular"
+        android:cropToPadding="false"
+        android:padding="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/txv_contador" />
+
+    <ImageButton
+        android:id="@+id/img_linterna"
+        android:layout_width="@dimen/textview_contador_size"
+        android:layout_height="@dimen/textview_contador_size"
+        android:layout_marginEnd="@dimen/textview_contador_margin"
+        android:layout_marginBottom="@dimen/textview_contador_margin"
+        android:background="@drawable/circular"
+        android:cropToPadding="false"
+        android:padding="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/linterna"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img_reset" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
