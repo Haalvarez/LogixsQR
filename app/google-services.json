@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "931245040457",
+    "project_id": "logixs-mms",
+    "storage_bucket": "logixs-mms.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931245040457:android:1827bccd337d9032323098",
+        "android_client_info": {
+          "package_name": "com.logixs.logixsqr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931245040457-5s0qs530ntvkjaqrseuub8rki6a0lvfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb_clERp3Kqwil3F3zgQ-oEU_1jpYjba8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931245040457-5s0qs530ntvkjaqrseuub8rki6a0lvfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
