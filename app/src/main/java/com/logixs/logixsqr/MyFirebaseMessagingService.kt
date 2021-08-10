@@ -1,14 +1,19 @@
 package com.logixs.logixsqr
+
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.logixs.logixsqr.ui.WebView.WebViewFragment
+
 
 class MyFirebaseMessagingService:FirebaseMessagingService() {
 
     override fun onMessageReceived(p0: RemoteMessage) {
-
+        abrir()
+        val noti=p0.getNotification()
+        val data=p0.getData()
        Looper.prepare()
         Handler().post{
 
@@ -17,9 +22,7 @@ class MyFirebaseMessagingService:FirebaseMessagingService() {
 
 
 
-         //   val intent = Intent(this, ::class.java)
-          //  intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-          //  startActivity(intent)
+
         Looper.loop()
 
        //}
@@ -27,4 +30,16 @@ class MyFirebaseMessagingService:FirebaseMessagingService() {
 
 
     }
+
+fun abrir(){
+
+
+    val abrirFragment = HomeActivity().abrirFragment(
+        WebViewFragment(
+            SharedPref.getPathUsuario(HomeActivity()),
+            SharedPref.getIdUsuario(HomeActivity())
+        ), "Mis Viajes"
+    )
+
+}
 }
