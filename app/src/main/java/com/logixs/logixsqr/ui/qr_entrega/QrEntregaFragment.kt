@@ -38,6 +38,9 @@ class QrEntregaFragment : Fragment() {
     private val PERMISSION_CAMARA_REQUEST_CODE: Int = 100
     val operacionActual = "entrega"
 
+
+
+
     lateinit var barcodeDetector: BarcodeDetector
     lateinit var cameraSource: CameraSource
     lateinit var cameraView: SurfaceView

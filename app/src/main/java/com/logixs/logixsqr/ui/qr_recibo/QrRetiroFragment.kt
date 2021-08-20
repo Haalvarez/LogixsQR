@@ -332,6 +332,11 @@ class QrRetiroFragment : Fragment() {
         val url =
             Configuracion.URL_LOGIXS + SharedPref.getPathUsuario(requireContext()) + "/envioflex/RecibirScanQR"
 
+        //busco lat lng para enviar
+
+
+
+
         // Genero la solicitud para enviar al backend
         val stringRequestBE = object : StringRequest(
             Method.POST, url,
