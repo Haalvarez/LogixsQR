@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
+import com.logixs.logixsqr.Utils.GPSUtils.getInstance
 import com.vulkansoft.sporter.HttpRequest
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,6 +19,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //ubicacion
+        var gps = getInstance()
+        gps.findDeviceLocation(this)
+
+
+
         FirebaseApp.initializeApp(this)
         setContentView(R.layout.activity_main)
 

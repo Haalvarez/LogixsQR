@@ -22,6 +22,7 @@ import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
 import com.google.gson.Gson
 import com.logixs.logixsqr.*
+import com.logixs.logixsqr.Utils.GPSUtils.getInstance
 import com.logixs.logixsqr.database.AppDatabase
 import com.logixs.logixsqr.database.Envio
 import com.logixs.logixsqr.ui.home.HomeFragment
@@ -58,7 +59,11 @@ class QrEntregaFragment : Fragment() {
     lateinit var txtCausaNoEntrega1: RadioButton
     lateinit var txtCausaNoEntrega2: RadioButton
     lateinit var txtCausaNoEntrega3: RadioButton
-
+lateinit var lat:String
+lateinit var lng:String
+    //
+    
+    
     //
     private lateinit var db: AppDatabase
     var solicitudPreviaFinalizada = true
@@ -79,7 +84,7 @@ class QrEntregaFragment : Fragment() {
         //
         var q1 = root.findViewById(R.id.radiogroup) as RadioGroup
         q1.check(R.id.radEntregadoOk)
-        var radioGroup = root.findViewById(R.id.radiogroup) as RadioGroup
+        //var radioGroup = root.findViewById(R.id.radiogroup) as RadioGroup
         txtEntregaNormal=root.findViewById(R.id.radEntregadoOk)
         txtCausaNoEntrega1=root.findViewById(R.id.rad_noEntregado1)
         txtCausaNoEntrega2=root.findViewById(R.id.rad_noEntregado2)
@@ -114,6 +119,24 @@ class QrEntregaFragment : Fragment() {
         configurarContador()
 
         db = AppDatabase.getInstance(requireContext().applicationContext)
+
+
+        var gps =getInstance()
+        //gps.findDeviceLocation(MainActivity())
+
+
+
+
+         lat =gps.latitude
+        if (lat.isNullOrEmpty()) lat else "0"
+
+
+         lng =gps.getLongitude()
+        if (lng.isNullOrEmpty()) lng else "0"
+        Log.d(this::class.java.simpleName, "lat=> "+lat+"lng "+lng)
+
+
+
 
         return root
     }
@@ -350,7 +373,7 @@ class QrEntregaFragment : Fragment() {
 
                 } catch (a: Exception) {
 
-                    Log.d(this::class.java.simpleName, "Error al procesar la información de ML")
+                    Log.d(this::class.java.simpleName, "Error al procesar la información de ML"+ a.message)
 
                     habilitarEscaneo()
 
@@ -371,6 +394,12 @@ class QrEntregaFragment : Fragment() {
 
         val url =
             Configuracion.URL_LOGIXS + SharedPref.getPathUsuario(requireContext()) + "/envioflex/RecibirScanQR"
+//busco las coords
+     //   requestPermissions(
+     //   arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+     //       PERMISSION_CAMARA_REQUEST_CODE )
+
+
 
         // Genero la solicitud para enviar al backend
         val stringRequestBE = object : StringRequest(
@@ -404,7 +433,8 @@ class QrEntregaFragment : Fragment() {
                 params["Sender_id"] = qrModel.sender_id.toString()
                 params["recibeDNI"] = txtDniRecibe.text.toString()
                 params["RecibeNombre"] = txtNombreRecibe.text.toString()
-
+                params["lat"] = lat
+                params["lng"] = lng
                 //
                 if(txtEntregaNormal.isChecked){
                     params["EntregaExitosa"] = "true"
