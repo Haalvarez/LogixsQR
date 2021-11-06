@@ -3,17 +3,13 @@ package com.vulkansoft.sporter
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.android.volley.VolleyError
 import com.google.android.material.snackbar.Snackbar
 import com.logixs.logixsqr.Configuracion
 import com.logixs.logixsqr.ErrorActivity
-import com.logixs.logixsqr.ListEnviosActivity
 import com.logixs.logixsqr.R
 import java.io.PrintWriter
 import java.io.StringWriter
@@ -29,7 +25,7 @@ object Dialogs {
         Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show()
     }
 
-    fun mostrarSnackbarLargo(view: View,  textoMensaje: String, color: Int) {
+    fun mostrarSnackbarLargo(view: View, textoMensaje: String, color: Int) {
 
         var snackbar = Snackbar.make(view, textoMensaje, Snackbar.LENGTH_LONG)
         snackbar.setTextColor(color)

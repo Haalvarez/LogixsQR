@@ -28,12 +28,11 @@ import com.logixs.logixsqr.database.Envio
 import com.logixs.logixsqr.ui.home.HomeFragment
 import com.vulkansoft.sporter.Dialogs
 import com.vulkansoft.sporter.HttpRequest
-import kotlinx.android.synthetic.main.fragment_qr_entrega.container
+import kotlinx.android.synthetic.main.fragment_qr_entrega.*
 import kotlinx.android.synthetic.main.fragment_qr_retiro.*
 import java.io.IOException
 import java.util.*
 import kotlin.collections.HashMap
-import kotlin.concurrent.thread
 
 
 class QrCargaFragment : Fragment() {
@@ -113,7 +112,7 @@ class QrCargaFragment : Fragment() {
 
             // creo la camara fuente
             cameraSource = CameraSource.Builder(context, barcodeDetector)
-                .setRequestedPreviewSize(1280, 640)
+                .setRequestedPreviewSize(1280, 840)
                 .setRequestedFps(25f)
                 .setAutoFocusEnabled(true).build()
 

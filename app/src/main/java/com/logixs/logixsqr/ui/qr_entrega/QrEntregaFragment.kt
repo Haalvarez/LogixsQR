@@ -37,6 +37,7 @@ import kotlin.collections.HashMap
 class QrEntregaFragment : Fragment() {
 
     private val PERMISSION_CAMARA_REQUEST_CODE: Int = 100
+    private val PERMISSION_ACCESS_FINE_LOCATION: Int = 100
     val operacionActual = "entrega"
 
 
@@ -120,19 +121,12 @@ lateinit var lng:String
 
         db = AppDatabase.getInstance(requireContext().applicationContext)
 
+                var gps =getInstance()
 
-        var gps =getInstance()
-        //gps.findDeviceLocation(MainActivity())
-
-
-
-
-         lat =gps.latitude
-        if (lat.isNullOrEmpty()) lat else "0"
-
-
-         lng =gps.getLongitude()
-        if (lng.isNullOrEmpty()) lng else "0"
+                lat =gps.latitude
+                if (lat.isNullOrEmpty()) lat else "0"
+                lng =gps.getLongitude()
+              if (lng.isNullOrEmpty()) lng else "0"
         Log.d(this::class.java.simpleName, "lat=> "+lat+"lng "+lng)
 
 
