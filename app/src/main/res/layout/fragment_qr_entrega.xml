@@ -115,10 +115,10 @@
 
     <ImageView
         android:id="@+id/img_estado"
-        android:layout_width="@dimen/image_result"
-        android:layout_height="@dimen/image_result"
-        android:layout_marginTop="@dimen/fragment_vertical_space"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="85dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="268dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_nombre_recibe" />
 
@@ -199,16 +199,15 @@
 
     <RadioGroup
         android:id="@+id/radiogroup"
-        android:layout_width="208dp"
-        android:layout_height="wrap_content"
+        android:layout_width="197dp"
+        android:layout_height="116dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="112dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/img_reset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_estado">
+        app:layout_constraintTop_toBottomOf="@+id/txt_nombre_recibe">
         android:checkedButton="@+id/radEntregadoOk"
 
         <RadioButton

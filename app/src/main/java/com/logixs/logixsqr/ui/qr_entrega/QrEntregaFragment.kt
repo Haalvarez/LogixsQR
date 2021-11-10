@@ -37,7 +37,7 @@ import kotlin.collections.HashMap
 class QrEntregaFragment : Fragment() {
 
     private val PERMISSION_CAMARA_REQUEST_CODE: Int = 100
-    private val PERMISSION_ACCESS_FINE_LOCATION: Int = 100
+    private val PERMISSION_ACCESS_FINE_LOCATION: Int = 101
     val operacionActual = "entrega"
 
 
@@ -121,13 +121,10 @@ lateinit var lng:String
 
         db = AppDatabase.getInstance(requireContext().applicationContext)
 
-                var gps =getInstance()
 
-                lat =gps.latitude
-                if (lat.isNullOrEmpty()) lat else "0"
-                lng =gps.getLongitude()
-              if (lng.isNullOrEmpty()) lng else "0"
-        Log.d(this::class.java.simpleName, "lat=> "+lat+"lng "+lng)
+
+
+
 
 
 
@@ -150,7 +147,7 @@ lateinit var lng:String
 
             // creo la camara fuente
             cameraSource = CameraSource.Builder(context, barcodeDetector)
-                .setRequestedPreviewSize(1280, 640)
+                .setRequestedPreviewSize(1280, 840)
                 .setRequestedFps(25f)
                 .setAutoFocusEnabled(true).build()
 
@@ -192,6 +189,44 @@ lateinit var lng:String
                         )
 
                     }
+                    //permisos fine location
+                    if (ContextCompat.checkSelfPermission(
+                            context!!,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                        ) == PackageManager.PERMISSION_GRANTED
+                    ) {
+                        // inicio el gps
+                        try {
+                            var gps =getInstance()
+                            lat =gps.latitude
+                            lng =gps.getLongitude()
+
+                        } catch (ie: IOException) {
+                            Dialogs.mostrarSnackbarLargo(
+                                container,
+                                getString(R.string.mensaje_error_permisos_ubicacion),
+                                Color.RED
+                            )
+                        }
+                    } else {
+
+                        // Sino le indico que falta dar permisos
+                        Dialogs.mostrarSnackbarButton(
+                            container, getString(R.string.mensaje_error_permisos_ubicacion), getString(
+                                R.string.mensaje_aceptar
+                            ), Color.YELLOW
+                        )
+
+                        // Pido los permisos
+                        requestPermissions(
+                            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                            PERMISSION_ACCESS_FINE_LOCATION
+                        )
+
+                    }
+
+
+
                 }
 
                 override fun surfaceChanged(
@@ -265,6 +300,31 @@ lateinit var lng:String
                 }
                 return
             }
+            PERMISSION_ACCESS_FINE_LOCATION->{
+                // Si la solicitud de permisos no fue cancelada por el usuario y los permisos fueron otorgados
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                ) {
+                    // Recargo el fragment
+                    requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment, QrEntregaFragment())
+                        .commit();
+                } else {
+                    // Sino, muestro el mensaje indicando que los permisos son necesario y vuelvo al fragment home
+                    Dialogs.mostrarSnackbarLargo(
+                        container,
+                        getString(R.string.mensaje_error_permisos_ubicacion),
+                        Color.YELLOW
+                    )
+                    requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment, HomeFragment())
+                        .commit();
+                }
+                return
+            }
+
+
+
+
         }
     }
 
@@ -392,7 +452,8 @@ lateinit var lng:String
      //   requestPermissions(
      //   arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
      //       PERMISSION_CAMARA_REQUEST_CODE )
-
+        if (lat.isNullOrEmpty()) lat else "0"
+        if (lng.isNullOrEmpty()) lng else "0"
 
 
         // Genero la solicitud para enviar al backend

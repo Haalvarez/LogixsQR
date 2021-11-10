@@ -26,6 +26,7 @@
     <string name="mensaje_error_usuario_contrasenia">El DNI o contraseña es inválido</string>
     <string name="mensaje_error_autenticacion">Hubo un error al validar los datos ingresados</string>
     <string name="mensaje_error_permisos_camara">Se deben dar permisos de acceso a la cámara para escanear un QR</string>
+    <string name="mensaje_error_permisos_ubicacion">Se deben dar permisos de ubicacion </string>
     <string name="mensaje_error_abrir_camara">Hubo un error al abrir la camara</string>
     <string name="mensaje_error_mercado_libre">Hubo un error al obtener información de ML</string>
     <string name="mensaje_campos_recibe_incompletos">Se requiere DNI y Nombre de quien recibe</string>
