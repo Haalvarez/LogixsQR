@@ -147,7 +147,7 @@ lateinit var lng:String
 
             // creo la camara fuente
             cameraSource = CameraSource.Builder(context, barcodeDetector)
-                .setRequestedPreviewSize(1280, 840)
+                .setRequestedPreviewSize(1280, 640)
                 .setRequestedFps(25f)
                 .setAutoFocusEnabled(true).build()
 
