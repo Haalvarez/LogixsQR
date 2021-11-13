@@ -147,7 +147,7 @@ lateinit var lng:String
 
             // creo la camara fuente
             cameraSource = CameraSource.Builder(context, barcodeDetector)
-                .setRequestedPreviewSize(1280, 640)
+                .setRequestedPreviewSize(640, 640)
                 .setRequestedFps(25f)
                 .setAutoFocusEnabled(true).build()
 
@@ -367,7 +367,10 @@ lateinit var lng:String
 
     private fun obtenerInfoML(view: View, qrModel: QrModel) {
 
-        val url = Configuracion.URL_ML + qrModel.sender_id
+        var url=Configuracion.URL_ML + qrModel.sender_id
+        if(qrModel.id.contains("NOML")){
+            url="https://logixs.com.ar/"+SharedPref.getPathUsuario(requireContext())+"/usuarios/ConsultaUsuariosAppNOml?usuario="+qrModel.sender_id
+        }
 
         // Genero la solicitud para obtener la info de ML
         val stringRequestML = StringRequest(
