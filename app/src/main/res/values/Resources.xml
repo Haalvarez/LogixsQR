@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="estatoEntrega">
+        <item>Entregado</item>
+        <item>Domicilio Incorrecto</item>
+        <item>Nadie en Domicilio</item>
+        <item>Rechazado</item>
+        <item>Zona Peligrosa</item>
+    </string-array>
+</resources>

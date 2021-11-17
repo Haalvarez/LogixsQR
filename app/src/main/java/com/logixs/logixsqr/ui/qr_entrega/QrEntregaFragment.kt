@@ -34,6 +34,7 @@ import java.io.IOException
 import java.util.*
 import kotlin.collections.HashMap
 
+
 class QrEntregaFragment : Fragment() {
 
     private val PERMISSION_CAMARA_REQUEST_CODE: Int = 100
@@ -55,17 +56,10 @@ class QrEntregaFragment : Fragment() {
     lateinit var txtDniRecibe: EditText
     lateinit var txtNombreRecibe: EditText
     lateinit var imgReset: ImageView
-    //
-    lateinit var txtEntregaNormal: RadioButton
-    lateinit var txtCausaNoEntrega1: RadioButton
-    lateinit var txtCausaNoEntrega2: RadioButton
-    lateinit var txtCausaNoEntrega3: RadioButton
-lateinit var lat:String
-lateinit var lng:String
-    //
-    
-    
-    //
+    lateinit var txtObs: EditText
+    //lateinit var EstadoEntregaText: TextView
+    lateinit var lat:String
+    lateinit var lng:String
     private lateinit var db: AppDatabase
     var solicitudPreviaFinalizada = true
     var ultimoIdEnvio = ""
@@ -82,16 +76,8 @@ lateinit var lng:String
         }
 
         val root = inflater.inflate(R.layout.fragment_qr_entrega, container, false)
-        //
-        var q1 = root.findViewById(R.id.radiogroup) as RadioGroup
-        q1.check(R.id.radEntregadoOk)
-        //var radioGroup = root.findViewById(R.id.radiogroup) as RadioGroup
-        txtEntregaNormal=root.findViewById(R.id.radEntregadoOk)
-        txtCausaNoEntrega1=root.findViewById(R.id.rad_noEntregado1)
-        txtCausaNoEntrega2=root.findViewById(R.id.rad_noEntregado2)
-        txtCausaNoEntrega3=root.findViewById(R.id.rad_noEntregado3)
-        //
 
+        txtObs=root.findViewById(R.id.txt_obsEntrega)
         txvIdVendedor = root.findViewById(R.id.txv_id_vendedor)
         txvNicknameVendedor = root.findViewById(R.id.txv_nickname_vendedor)
         txvEstado = root.findViewById(R.id.txv_estado)
@@ -122,14 +108,39 @@ lateinit var lng:String
         db = AppDatabase.getInstance(requireContext().applicationContext)
 
 
+        val spinner: Spinner = root.findViewById(R.id.spinner)
+
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            requireContext().applicationContext,
+            R.array.estatoEntrega,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item)
+            // Apply the adapter to the spinner
+
+            spinner.adapter = adapter
+           //adapter.notifyDataSetChanged()
 
 
 
+        spinner.setSelection(0)
 
+         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+               // spinner.setSelection(position)
 
+                //spinner.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
+                val item = spinner.getChildAt(0) as TextView
+               item.setTextColor(Color.parseColor("#FFFFFF"))
 
-
-        return root
+            }
+        }
+        }
+       return root
     }
 
     override fun onViewCreated(v: View, savedInstanceState: Bundle?) {
@@ -222,11 +233,7 @@ lateinit var lng:String
                             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                             PERMISSION_ACCESS_FINE_LOCATION
                         )
-
                     }
-
-
-
                 }
 
                 override fun surfaceChanged(
@@ -260,7 +267,6 @@ lateinit var lng:String
                             // procedo con el analisis del qr y el envio al backend
                             procesarQR(v, barcode!!)
                         } else {
-
                             Log.d(this::class.java.simpleName, "Escaneo deshabilitado")
                         }
                     }
@@ -493,23 +499,8 @@ lateinit var lng:String
                 params["RecibeNombre"] = txtNombreRecibe.text.toString()
                 params["lat"] = lat
                 params["lng"] = lng
-                //
-                if(txtEntregaNormal.isChecked){
-                    params["EntregaExitosa"] = "true"
-                }else{
-                    params["EntregaExitosa"] = "false"
-                    if(txtCausaNoEntrega1.isChecked){
-                        params["RazonNoEntrega"] = txtCausaNoEntrega1.text.toString()
-                    }
-                    if(txtCausaNoEntrega2.isChecked){
-                        params["RazonNoEntrega"] = txtCausaNoEntrega2.text.toString()
-                    }
-
-                    if(txtCausaNoEntrega3.isChecked){
-                        params["RazonNoEntrega"] = txtCausaNoEntrega3.text.toString()
-                    }
-                }
-                //
+                params["obs"]=txtObs.text.toString()
+                params["EstadoEntrega"] = spinner.getSelectedItem().toString()
                 return params
             }
         }
@@ -734,4 +725,6 @@ lateinit var lng:String
             return 0
         }
     }
+
+
 }
