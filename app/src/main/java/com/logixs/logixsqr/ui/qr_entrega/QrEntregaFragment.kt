@@ -133,8 +133,7 @@ class QrEntregaFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                // spinner.setSelection(position)
 
-                //spinner.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
-                val item = spinner.getChildAt(0) as TextView
+               val item = spinner.getChildAt(0) as TextView
                item.setTextColor(Color.parseColor("#FFFFFF"))
 
             }

@@ -230,4 +230,5 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             abrirFragment(HomeFragment(), navTitulo)
         }
     }
+
 }
