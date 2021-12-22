@@ -10,20 +10,19 @@
     tools:context=".ui.qr_entrega.QrCargaFragment">
 
 
-
     <SurfaceView
         android:id="@+id/camera_view"
-        android:layout_width="322dp"
-        android:layout_height="165dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="301dp"
+        android:layout_height="222dp"
+        android:layout_alignParentLeft="false"
         android:layout_centerVertical="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".25"
-        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHeight_percent=".4"
+        app:layout_constraintHorizontal_bias="0.226"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0.032" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -36,19 +35,29 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/lbl_paquete_id"
         android:textSize="@dimen/label_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/camera_view" />
 
     <TextView
+        android:id="@+id/txv_id_vendedor"
+        android:layout_width="187dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/string_campo_no_completado"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/camera_view" />
+
+    <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:text="@string/lbl_estado"
         android:textSize="@dimen/label_text_size"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +67,7 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:text="@string/lbl_vendedor_nombre"
         android:textSize="@dimen/label_text_size"
@@ -67,33 +76,23 @@
 
     <TextView
         android:id="@+id/txv_nickname_vendedor"
-        android:layout_width="183dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="187dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="8dp"
         android:text="@string/string_campo_no_completado"
         android:textSize="@dimen/label_text_size"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/txv_id_vendedor" />
 
     <TextView
-        android:id="@+id/txv_id_vendedor"
-        android:layout_width="181dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/string_campo_no_completado"
-        android:textSize="@dimen/label_text_size"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/camera_view" />
-
-    <TextView
         android:id="@+id/txv_estado"
-        android:layout_width="182dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="188dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
         android:text="@string/string_campo_no_completado"
         android:textSize="@dimen/label_text_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/txv_nickname_vendedor" />
 
@@ -101,8 +100,8 @@
         android:id="@+id/img_estado"
         android:layout_width="85dp"
         android:layout_height="58dp"
-        android:layout_marginStart="280dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_obsEntrega" />
 
@@ -138,7 +137,7 @@
         android:id="@+id/txt_dni_recibe"
         android:layout_width="322dp"
         android:layout_height="41dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/border_edittext"
         android:ems="10"
         android:hint="@string/lbl_dni_recibe"
@@ -147,7 +146,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/colorTexto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.366"
+        app:layout_constraintHorizontal_bias="0.449"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txv_estado" />
 
@@ -166,36 +165,33 @@
         android:textColor="@color/colorTexto"
         app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.337"
+        app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.191"
         app:layout_constraintTop_toBottomOf="@+id/txt_dni_recibe"
-        />
+        app:layout_constraintVertical_bias="0.191" />
+
     <Spinner
-        android:ems="10"
         android:id="@+id/spinner"
         android:layout_width="322dp"
         android:layout_height="41dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/border_edittext"
+        android:ems="10"
+        android:hint="@string/lbl_estado"
         android:popupBackground="@color/colorFondo"
         android:textColor="@drawable/border_edittext"
         android:visibility="visible"
-        android:hint="@string/lbl_estado"
-        app:layout_constraintTop_toBottomOf="@+id/txt_nombre_recibe"
-        tools:layout_editor_absoluteX="24dp"
-        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.337"
+        app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.191"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/txt_nombre_recibe"
+        tools:visibility="visible" />
+
     <EditText
         android:id="@+id/txt_obsEntrega"
         android:layout_width="322dp"
         android:layout_height="41dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/border_edittext"
         android:ems="10"
         android:hint="@string/lbl_obs_entrega"
@@ -205,11 +201,10 @@
         android:textColor="@color/colorTexto"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.337"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.191"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
     <ImageButton
         android:id="@+id/img_linterna"
         android:layout_width="@dimen/textview_contador_size"

@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity() {
                         params["MensajeroId"] = idUsuario.toString()
                         params["Path"] = path.toString()
                         params["Token_fcm"] = token.toString()
+                        params["AppVersion"] =  BuildConfig.VERSION_NAME;
 
                         return params
                     }

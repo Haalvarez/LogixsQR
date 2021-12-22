@@ -38,7 +38,7 @@ import kotlin.collections.HashMap
 class QrEntregaFragment : Fragment() {
 
     private val PERMISSION_CAMARA_REQUEST_CODE: Int = 100
-    private val PERMISSION_ACCESS_FINE_LOCATION: Int = 101
+    private val PERMISSION_ACCESS_FINE_LOCATION: Int = 100
     val operacionActual = "entrega"
 
 
@@ -139,6 +139,11 @@ class QrEntregaFragment : Fragment() {
             }
         }
         }
+
+
+
+
+
        return root
     }
 
@@ -147,7 +152,40 @@ class QrEntregaFragment : Fragment() {
         Log.d(this::class.java.simpleName, "onViewCreated")
 
         try {
+//permisos fine location
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                // inicio el gps
+                try {
+                    var gps =getInstance()
+                    lat =gps.latitude
+                    lng =gps.getLongitude()
 
+                } catch (ie: IOException) {
+                    Dialogs.mostrarSnackbarLargo(
+                        container,
+                        getString(R.string.mensaje_error_permisos_ubicacion),
+                        Color.RED
+                    )
+                }
+            } else {
+
+                // Sino le indico que falta dar permisos
+                Dialogs.mostrarSnackbarButton(
+                    container, getString(R.string.mensaje_error_permisos_ubicacion), getString(
+                        R.string.mensaje_aceptar
+                    ), Color.YELLOW
+                )
+
+                // Pido los permisos
+                requestPermissions(
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    PERMISSION_ACCESS_FINE_LOCATION
+                )
+            }
             ObtenerEnviosYActualizacionContador().execute()
 
             // creo el detector qr
@@ -157,7 +195,7 @@ class QrEntregaFragment : Fragment() {
 
             // creo la camara fuente
             cameraSource = CameraSource.Builder(context, barcodeDetector)
-                .setRequestedPreviewSize(640, 640)
+                .setRequestedPreviewSize(1280, 640)
                 .setRequestedFps(25f)
                 .setAutoFocusEnabled(true).build()
 
@@ -199,40 +237,40 @@ class QrEntregaFragment : Fragment() {
                         )
 
                     }
-                    //permisos fine location
-                    if (ContextCompat.checkSelfPermission(
-                            context!!,
-                            Manifest.permission.ACCESS_FINE_LOCATION
-                        ) == PackageManager.PERMISSION_GRANTED
-                    ) {
-                        // inicio el gps
-                        try {
-                            var gps =getInstance()
-                            lat =gps.latitude
-                            lng =gps.getLongitude()
-
-                        } catch (ie: IOException) {
-                            Dialogs.mostrarSnackbarLargo(
-                                container,
-                                getString(R.string.mensaje_error_permisos_ubicacion),
-                                Color.RED
-                            )
-                        }
-                    } else {
-
-                        // Sino le indico que falta dar permisos
-                        Dialogs.mostrarSnackbarButton(
-                            container, getString(R.string.mensaje_error_permisos_ubicacion), getString(
-                                R.string.mensaje_aceptar
-                            ), Color.YELLOW
-                        )
-
-                        // Pido los permisos
-                        requestPermissions(
-                            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                            PERMISSION_ACCESS_FINE_LOCATION
-                        )
-                    }
+//                    //permisos fine location
+//                    if (ContextCompat.checkSelfPermission(
+//                            context!!,
+//                            Manifest.permission.ACCESS_FINE_LOCATION
+//                        ) == PackageManager.PERMISSION_GRANTED
+//                    ) {
+//                        // inicio el gps
+//                        try {
+//                            var gps =getInstance()
+//                            lat =gps.latitude
+//                            lng =gps.getLongitude()
+//
+//                        } catch (ie: IOException) {
+//                            Dialogs.mostrarSnackbarLargo(
+//                                container,
+//                                getString(R.string.mensaje_error_permisos_ubicacion),
+//                                Color.RED
+//                            )
+//                        }
+//                    } else {
+//
+//                        // Sino le indico que falta dar permisos
+//                        Dialogs.mostrarSnackbarButton(
+//                            container, getString(R.string.mensaje_error_permisos_ubicacion), getString(
+//                                R.string.mensaje_aceptar
+//                            ), Color.YELLOW
+//                        )
+//
+//                        // Pido los permisos
+//                        requestPermissions(
+//                            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+//                            PERMISSION_ACCESS_FINE_LOCATION
+//                        )
+//                    }
                 }
 
                 override fun surfaceChanged(
@@ -271,6 +309,7 @@ class QrEntregaFragment : Fragment() {
                     }
                 }
             })
+
         } catch (e: Exception) {
             Dialogs.mostrarSnackbarError(lyt_container,requireContext(),operacionActual,e)
         }
