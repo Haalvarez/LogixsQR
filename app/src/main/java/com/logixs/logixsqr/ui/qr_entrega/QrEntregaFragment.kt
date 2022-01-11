@@ -407,8 +407,24 @@ class QrEntregaFragment : Fragment() {
             stringRequestML
         )
     }
-
-    private fun procesarRespuestaML(qrModel: QrModel, mlResponse: String?) {
+ /*   fun onErrorResponse(error: VolleyError?) {
+        if (error is TimeoutError || error is NoConnectionError) {
+            Toast.makeText(
+                context,
+                requireContext().getString(R.string.error_network_timeout),
+                Toast.LENGTH_LONG
+            ).show()
+        } else if (error is AuthFailureError) {
+            //TODO
+        } else if (error is ServerError) {
+            //TODO
+        } else if (error is NetworkError) {
+            //TODO
+        } else if (error is ParseError) {
+            //TODO
+        }
+    }
+ */   private fun procesarRespuestaML(qrModel: QrModel, mlResponse: String?) {
 
         try {
             if (ultimoIdEnvio == qrModel.id) {
