@@ -65,4 +65,5 @@
     <string name="rad_noEntregado3">Falta de tiempo</string>
     <string name="msg_nuevo_Token" formatted="true" translatable="false">msg_nuevo_Token</string>
     <string name="menu_MisViajes">Mis Viajes</string>
+    <string name="error_network_timeout">error network timeout</string>
 </resources>

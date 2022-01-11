@@ -237,40 +237,7 @@ class QrEntregaFragment : Fragment() {
                         )
 
                     }
-//                    //permisos fine location
-//                    if (ContextCompat.checkSelfPermission(
-//                            context!!,
-//                            Manifest.permission.ACCESS_FINE_LOCATION
-//                        ) == PackageManager.PERMISSION_GRANTED
-//                    ) {
-//                        // inicio el gps
-//                        try {
-//                            var gps =getInstance()
-//                            lat =gps.latitude
-//                            lng =gps.getLongitude()
-//
-//                        } catch (ie: IOException) {
-//                            Dialogs.mostrarSnackbarLargo(
-//                                container,
-//                                getString(R.string.mensaje_error_permisos_ubicacion),
-//                                Color.RED
-//                            )
-//                        }
-//                    } else {
-//
-//                        // Sino le indico que falta dar permisos
-//                        Dialogs.mostrarSnackbarButton(
-//                            container, getString(R.string.mensaje_error_permisos_ubicacion), getString(
-//                                R.string.mensaje_aceptar
-//                            ), Color.YELLOW
-//                        )
-//
-//                        // Pido los permisos
-//                        requestPermissions(
-//                            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-//                            PERMISSION_ACCESS_FINE_LOCATION
-//                        )
-//                    }
+
                 }
 
                 override fun surfaceChanged(
@@ -383,7 +350,7 @@ class QrEntregaFragment : Fragment() {
             val qrModel = gson.fromJson(qrLeido, QrModel::class.java)
 
             // Si se trata de un paquete NOML valido que esten completos los datos del que recibe
-            if (qrModel.id.startsWith("NOML", true)) {
+            if (qrModel.id.startsWith("NOML", true) && spinner.getSelectedItem().toString().equals(("Entregado"))) {
                 if (txtDniRecibe.text.isEmpty() || txtNombreRecibe.text.isEmpty()) {
 
                     Dialogs.mostrarSnackbarLargo(
