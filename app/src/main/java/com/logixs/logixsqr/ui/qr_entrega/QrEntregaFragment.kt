@@ -30,6 +30,7 @@ import com.vulkansoft.sporter.Dialogs
 import com.vulkansoft.sporter.HttpRequest
 import kotlinx.android.synthetic.main.fragment_qr_entrega.*
 import kotlinx.android.synthetic.main.fragment_qr_retiro.*
+import org.json.JSONObject
 import java.io.IOException
 import java.util.*
 import kotlin.collections.HashMap
@@ -392,11 +393,14 @@ class QrEntregaFragment : Fragment() {
                 procesarRespuestaML(qrModel, mlResponse)
             },
             Response.ErrorListener {
+                val fakeResponse = JSONObject("""{"nickname":""}""")
 
+                procesarRespuestaML(qrModel, fakeResponse.toString())
                 Log.d(this::class.java.simpleName, "Error al obtener información de ML")
 
-                habilitarEscaneo()
-                Dialogs.mostrarErrorVolley(context, container)
+              //  habilitarEscaneo()
+
+              //  Dialogs.mostrarErrorVolley(context, container)
             }
         )
 
@@ -407,24 +411,8 @@ class QrEntregaFragment : Fragment() {
             stringRequestML
         )
     }
- /*   fun onErrorResponse(error: VolleyError?) {
-        if (error is TimeoutError || error is NoConnectionError) {
-            Toast.makeText(
-                context,
-                requireContext().getString(R.string.error_network_timeout),
-                Toast.LENGTH_LONG
-            ).show()
-        } else if (error is AuthFailureError) {
-            //TODO
-        } else if (error is ServerError) {
-            //TODO
-        } else if (error is NetworkError) {
-            //TODO
-        } else if (error is ParseError) {
-            //TODO
-        }
-    }
- */   private fun procesarRespuestaML(qrModel: QrModel, mlResponse: String?) {
+
+   private fun procesarRespuestaML(qrModel: QrModel, mlResponse: String?) {
 
         try {
             if (ultimoIdEnvio == qrModel.id) {
