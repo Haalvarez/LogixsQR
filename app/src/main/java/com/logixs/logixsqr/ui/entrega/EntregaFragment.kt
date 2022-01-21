@@ -10,22 +10,26 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.google.gson.Gson
-import com.logixs.logixsqr.*
+import com.logixs.logixsqr.Configuracion
+import com.logixs.logixsqr.ListEnviosActivity
+import com.logixs.logixsqr.R
+import com.logixs.logixsqr.SharedPref
 import com.logixs.logixsqr.Utils.GPSUtils.getInstance
 import com.logixs.logixsqr.ui.home.HomeFragment
 import com.vulkansoft.sporter.Dialogs
 import com.vulkansoft.sporter.HttpRequest
+import kotlinx.android.synthetic.main.entrega.*
 import kotlinx.android.synthetic.main.fragment_qr_entrega.*
 import kotlinx.android.synthetic.main.fragment_qr_retiro.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 
@@ -36,17 +40,7 @@ class EntregaFragment : Fragment() {
     private val PERMISSION_ACCESS_FINE_LOCATION: Int = 100
     val operacionActual = "entrega"
 
-    lateinit var txvIdVendedor: TextView
-    lateinit var txvNicknameVendedor: TextView
-    lateinit var txvEstado: TextView
-    lateinit var imgEstado: ImageView
-    lateinit var txvContador: TextView
-    lateinit var txtDniRecibe: EditText
-    lateinit var txtNombreRecibe: EditText
-    lateinit var imgReset: ImageView
-    lateinit var txtObs: EditText
 
-    //lateinit var EstadoEntregaText: TextView
     lateinit var lat: String
     lateinit var lng: String
 
@@ -61,15 +55,16 @@ class EntregaFragment : Fragment() {
         } catch (e: Exception) {
         }
 
-        val root = inflater.inflate(R.layout.fragment_qr_entrega, container, false)
+        val root = inflater.inflate(R.layout.entrega, container, false)
+        val LvPqParaEntregar=root.findViewById<ListView>(R.id.LvPqParaEntregar)
+        val arrayAdapter:ArrayAdapter<*>
+        var paquetes= mutableListOf("a","b","c")
 
-        txtObs = root.findViewById(R.id.txt_obsEntrega)
-        txvIdVendedor = root.findViewById(R.id.txv_id_vendedor)
-        txvNicknameVendedor = root.findViewById(R.id.txv_nickname_vendedor)
-        txvEstado = root.findViewById(R.id.txv_estado)
-        txtDniRecibe = root.findViewById(R.id.txt_dni_recibe)
-        txtNombreRecibe = root.findViewById(R.id.txt_nombre_recibe)
-        imgEstado = root.findViewById(R.id.img_estado)
+
+        arrayAdapter= ArrayAdapter(requireContext() ,android.R.layout.simple_list_item_1 ,paquetes)
+        LvPqParaEntregar.adapter=arrayAdapter
+
+
 
         return root
     }
@@ -113,7 +108,7 @@ class EntregaFragment : Fragment() {
                     PERMISSION_ACCESS_FINE_LOCATION
                 )
             }
-
+            ObtenerListaDePQPorEntregar()
 
         } catch (e: Exception) {
             Dialogs.mostrarSnackbarError(lyt_container, requireContext(), operacionActual, e)
@@ -154,100 +149,22 @@ class EntregaFragment : Fragment() {
 
 
 
-    private fun obtenerlistaPQCargados(view: View, qrModel: QrModel) {
-
-        var url=Configuracion.URL_ML + qrModel.sender_id
-        if(qrModel.id.contains("NOML")){
-            url="https://logixs.com.ar/"+SharedPref.getPathUsuario(requireContext())+"/usuarios/ConsultaUsuariosAppNOml?usuario="+qrModel.sender_id
-        }
-
-        // Genero la solicitud para obtener la info de ML
-        val stringRequestML = StringRequest(
-            Request.Method.GET, url,
-            Response.Listener<String> { mlResponse ->
-
-                // Si no hubo error en la solicitud proceso la respuesta
-                procesarRespuestaML(qrModel, mlResponse)
-            },
-            Response.ErrorListener {
-                val fakeResponse = JSONObject("""{"nickname":""}""")
-
-                procesarRespuestaML(qrModel, fakeResponse.toString())
-                Log.d(this::class.java.simpleName, "Error al obtener información de ML")
-
-                //  habilitarEscaneo()
-
-                //  Dialogs.mostrarErrorVolley(context, container)
-            }
-        )
-
-        Log.d(this::class.java.simpleName, "Obtengo la información de ML")
-
-        // Agrego la solicitud a la cola de solicitudes
-        HttpRequest.getInstance(requireActivity().applicationContext).addToRequestQueue(
-            stringRequestML
-        )
-    }
-
-    private fun procesarRespuestaML(qrModel: QrModel, mlResponse: String?) {
-
-        try {
-            Log.d(this::class.java.simpleName, "Procesando la información de ML")
-
-            if (mlResponse != null) {
-                try {
-                    val gson = Gson()
-
-                    // convierto la respuesta a la clase MLModel, que tiene el formato del json recibido
-                    val mlModel = gson.fromJson(mlResponse, MLModel::class.java)
-
-                    // muestro el nick en la vista
-                    completarTxv(txvIdVendedor, qrModel.id, R.color.colorTexto)
-                    completarTxv(txvNicknameVendedor, mlModel.nickname, R.color.colorTexto)
-
-                    // guardo el nickname de ml en las shared
-                    SharedPref.setNickNameMl(requireContext(), mlModel.nickname)
-
-                    // Envio al backend la informacion del qr y de ml
-                    enviarAlBackend(qrModel, mlModel)
 
 
-                } catch (a: Exception) {
 
-                    Log.d(this::class.java.simpleName, "Error al procesar la información de ML"+ a.message)
+    private fun ObtenerListaDePQPorEntregar() {
 
-                    // Si hubo un error al obtener la información
-                    Dialogs.mostrarSnackbarLargo(
-                        container,
-                        getString(R.string.mensaje_error_mercado_libre),
-                        Color.RED
-                    )
-                }
-            }
-        } catch (e: Exception) {
-            Dialogs.mostrarSnackbarError(lyt_container, requireActivity(), operacionActual,e)
-        }
-    }
+        val url =   Configuracion.URL_LOGIXS + SharedPref.getPathUsuario(requireContext()) + "/envioflex/PendientesDeEntrega"
 
-    private fun enviarAlBackend(qrModel: QrModel, mlModel: MLModel) {
-
-        val url =
-            Configuracion.URL_LOGIXS + SharedPref.getPathUsuario(requireContext()) + "/envioflex/RecibirScanQR"
-//busco las coords
-        //   requestPermissions(
-        //   arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-        //       PERMISSION_CAMARA_REQUEST_CODE )
-        if (lat.isNullOrEmpty()) lat else "0"
-        if (lng.isNullOrEmpty()) lng else "0"
-
-
+        if (lat.isEmpty()) lat else "0"
+        if (lng.isEmpty()) lng else "0"
         // Genero la solicitud para enviar al backend
         val stringRequestBE = object : StringRequest(
             Method.POST, url,
             Response.Listener<String> { backendResponse ->
 
                 // Si no hubo error en la solicitud proceso la respuesta
-                procesarRespuestaBackend(backendResponse, qrModel.id)
+                procesarRespuestaBackend(backendResponse)
             },
             Response.ErrorListener {
 
@@ -259,22 +176,12 @@ class EntregaFragment : Fragment() {
         ) {
             override fun getParams(): Map<String, String> {
                 val gson = Gson()
-                val stringQrModel = gson.toJson(qrModel)
+                //val stringQrModel = gson.toJson(qrModel)
                 val params: MutableMap<String, String> =
                     HashMap()
-                params["MensajeroId"] = SharedPref.getIdUsuario(requireContext())!!
-                params["EntregaOretiro"] = operacionActual
-                params["Path"] = SharedPref.getPathUsuario(requireContext())!!
-                params["Scan"] = stringQrModel
-                params["IdML"] = qrModel.id
-                params["Nickname"] = mlModel.nickname
-                params["Sender_id"] = qrModel.sender_id.toString()
-                params["recibeDNI"] = txtDniRecibe.text.toString()
-                params["RecibeNombre"] = txtNombreRecibe.text.toString()
+                params["IdUsuario"] = SharedPref.getIdUsuario(requireContext())!!
                 params["lat"] = lat
                 params["lng"] = lng
-                params["obs"]=txtObs.text.toString()
-                params["EstadoEntrega"] = spinner.getSelectedItem().toString()
                 return params
             }
         }
@@ -288,55 +195,52 @@ class EntregaFragment : Fragment() {
     }
 
 
-    private fun procesarRespuestaBackend(backendResponse: String?, idEnvio: String) {
+
+    private fun procesarRespuestaBackend(backendResponse: String?) {
 
         Log.d(this::class.java.simpleName, "Procesando la información del BE")
+         try {
+             val gson = Gson()
 
-        if (backendResponse != null) {
-
-            try {
-
-                val gson = Gson()
-
-                // convierto la respuesta a la clase PostQrModel, que tiene el formato del json recibido
-                val postQrModel = gson.fromJson(backendResponse, PostQrModel::class.java)
-
-                // Si se registro el qr correctamente
-                if (postQrModel.resultado == 0) {
+             // convierto el string a la clase Qr, que tiene el formato del json recibido
+          //   val qrModel = gson.fromJson(backendResponse, PendientesDeEntregaXusuarioToListViewApp::class.java)
 
 
-                    // Muestro el resultado correcto
-                    completarTxv(txvEstado, postQrModel.mensaje, R.color.colorOk)
-                    imgEstado.setImageDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.check))
-                    reproducirSonido(R.raw.ok)
-                    Log.d(this::class.java.simpleName, "Respuesta del BE: OK")
+                    val jsonArray = JSONArray(backendResponse)
+                    val length = jsonArray.length()
+                    val listContents: MutableList<String> = ArrayList(length)
+                    for (i in 0 until length) {
 
-                } else {
-                    // Sino, muestro el mensaje devuelto por el backend
 
-                    // Muestro el resultado correcto
-                    completarTxv(txvEstado, postQrModel.mensaje, R.color.colorError)
-                    imgEstado.setImageDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.check))
-                    reproducirSonido(R.raw.error)
+                        //listContents.add(jsonArray.getString(i))
+                        val objects: JSONObject
+                        objects = jsonArray.getJSONObject(i)
+                        val AddressLine = objects["AddressLine"].toString()
 
-                    Log.d(this::class.java.simpleName, "Respuesta del BE: Error")
+
+
+
+
+                        listContents.add(AddressLine)
+                    }
+
+
+
+
+
+                    //val myListView = findViewById(R.id.LvPqParaEntregar) as ListView
+             LvPqParaEntregar.adapter =
+                        ArrayAdapter<String>(
+                            requireContext() ,
+                            android.R.layout.simple_list_item_1,
+                            listContents
+                        )
+                } catch (e: java.lang.Exception) {
+                    // this is just an example
                 }
 
-                imgEstado.visibility = ImageView.VISIBLE
-
-            } catch (a: Exception) {
-
-                Log.d(this::class.java.simpleName, "Error al procesar la información del BE")
-
-                // Sino hubo un error al procesar la respuesta del backend muestro error
-                Dialogs.mostrarSnackbarLargo(
-                    container,
-                    getString(R.string.mensaje_error_registro_qr),
-                    Color.RED
-                )
-            }
         }
-    }
+
 
 
 

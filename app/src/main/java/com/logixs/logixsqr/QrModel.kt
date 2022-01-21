@@ -6,3 +6,9 @@ data class QrModel (
     val hash_code: String,
     val security_digit: String
 )
+data class PendientesDeEntregaXusuarioToListViewApp (
+    val id_envio: String,
+    val addressLine: String,
+    val lat:Double,
+    val lng:Double
+)

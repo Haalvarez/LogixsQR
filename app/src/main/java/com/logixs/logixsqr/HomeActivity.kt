@@ -21,10 +21,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.logixs.logixsqr.ui.WebView.WebViewFragment
+import com.logixs.logixsqr.ui.entrega.EntregaFragment
 import com.logixs.logixsqr.ui.home.HomeFragment
 import com.logixs.logixsqr.ui.perfil.PerfilFragment
 import com.logixs.logixsqr.ui.qr_entrega.QrCargaFragment
-import com.logixs.logixsqr.ui.qr_entrega.QrEntregaFragment
 import com.logixs.logixsqr.ui.qr_recibo.QrRetiroFragment
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -191,7 +191,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 abrirFragment(HomeFragment(), navTitulo)
             }
             R.id.nav_qr_entrega -> {
-                abrirFragment(QrEntregaFragment(), item.title)
+                abrirFragment(EntregaFragment(), item.title)
+               // abrirFragment(QrEntregaFragment(), item.title)
             }
             R.id.nav_qr_carga -> {
                 abrirFragment(QrCargaFragment(), item.title)

@@ -279,7 +279,7 @@ class QrEntregaFragment : Fragment() {
             })
 
         } catch (e: Exception) {
-            Dialogs.mostrarSnackbarError(lyt_container,requireContext(),operacionActual,e)
+            //Dialogs.mostrarSnackbarError(lyt_container,requireContext(),operacionActual,e)
         }
     }
 
