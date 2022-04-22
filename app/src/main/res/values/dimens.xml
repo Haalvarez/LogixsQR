@@ -9,6 +9,7 @@
     <dimen name="image_home_size">100dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="fragment_paddig">24dp</dimen>
+    <dimen name="list_item_paddig">8dp</dimen>
     <dimen name="fragment_vertical_space">16dp</dimen>
     <dimen name="image_result">64dp</dimen>
     <dimen name="label_text_size">18sp</dimen>
@@ -20,4 +21,7 @@
     <dimen name="textview_contador_textsize">32sp</dimen>
     <dimen name="textview_contador_margin">8dp</dimen>
     <dimen name="list_envio_textsize">16sp</dimen>
+    <dimen name="list_cargados_img_size">40dp</dimen>
+    <dimen name="activity_padding">16dp</dimen>
+    <dimen name="label_text_size_entrega">16sp</dimen>
 </resources>

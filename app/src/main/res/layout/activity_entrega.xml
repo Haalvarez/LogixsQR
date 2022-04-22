@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorFondo"
+    android:padding="@dimen/fragment_paddig"
+    tools:context=".EntregaActivity">
+
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/txv_imagenes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/lbl_sin_imagenes_seleccionadas"
+            android:textSize="@dimen/label_text_size_entrega"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_cargar_imagenes"
+            app:layout_constraintTop_toTopOf="@+id/img_cargar_imagenes" />
+
+        <ImageView
+            android:id="@+id/img_estado2"
+            android:layout_width="85dp"
+            android:layout_height="58dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/img_atras"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_cargar_imagenes" />
+
+        <ImageButton
+            android:id="@+id/img_atras"
+            android:layout_width="@dimen/textview_contador_size"
+            android:layout_height="@dimen/textview_contador_size"
+            android:background="@drawable/circular"
+            android:cropToPadding="false"
+            android:padding="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/abc_vector_test"
+            android:tint="@color/colorFondo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/img_enviar"
+            android:layout_width="@dimen/textview_contador_size"
+            android:layout_height="@dimen/textview_contador_size"
+            android:background="@drawable/circular"
+            android:cropToPadding="false"
+            android:padding="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_menu_send"
+            android:tint="@color/colorOk"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageButton
+            android:id="@+id/img_cargar_imagenes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/circular"
+            android:cropToPadding="false"
+            android:padding="8dp"
+            android:scaleType="centerCrop"
+            android:tint="@color/colorOk"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/txt_observaciones"
+            app:srcCompat="@android:drawable/ic_menu_upload" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_cargar_imagenes"
+            android:textSize="@dimen/label_text_size_entrega"
+            app:layout_constraintBottom_toBottomOf="@+id/img_cargar_imagenes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_cargar_imagenes" />
+
+        <TextView
+            android:id="@+id/txv_telefono"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/string_campo_no_completado"
+            android:textSize="@dimen/label_text_size_entrega"
+            app:layout_constraintEnd_toStartOf="@+id/img_llamar"
+            app:layout_constraintStart_toStartOf="@+id/txv_direccion"
+            app:layout_constraintTop_toBottomOf="@+id/txv_direccion" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_telefono"
+            android:textSize="@dimen/label_text_size_entrega"
+            app:layout_constraintBottom_toBottomOf="@+id/txv_telefono"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txv_telefono" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_paquete_id"
+            android:textSize="@dimen/label_text_size_entrega"
+            app:layout_constraintBottom_toBottomOf="@+id/txv_id_envio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txv_id_envio" />
+
+        <TextView
+            android:id="@+id/txv_id_envio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/string_campo_no_completado"
+            android:textSize="@dimen/label_text_size_entrega"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline9"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_direccion"
+            android:textSize="@dimen/label_text_size_entrega"
+            app:layout_constraintBottom_toBottomOf="@+id/txv_direccion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txv_direccion" />
+
+        <TextView
+            android:id="@+id/txv_direccion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/string_campo_no_completado"
+            android:textSize="@dimen/label_text_size_entrega"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline9"
+            app:layout_constraintTop_toBottomOf="@+id/txv_id_envio" />
+
+
+        <EditText
+            android:id="@+id/txt_dni_recibe"
+            android:layout_width="0dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/border_edittext"
+            android:ems="10"
+            android:hint="@string/lbl_dni_recibe"
+            android:inputType="number"
+            android:padding="@dimen/button_padding"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/colorTexto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.449"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txv_telefono" />
+
+        <EditText
+            android:id="@+id/txt_nombre_recibe"
+            android:layout_width="0dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/border_edittext"
+            android:ems="10"
+            android:hint="@string/lbl_nombre_recibe"
+            android:inputType="textPersonName"
+            android:padding="@dimen/button_padding"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/colorTexto"
+            app:layout_constraintBottom_toTopOf="@+id/spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.471"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_dni_recibe"
+            app:layout_constraintVertical_bias="0.191" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_spinner"
+            android:ems="10"
+            android:hint="@string/lbl_estado"
+            android:popupBackground="@color/colorFondo"
+            android:textColor="@drawable/border_edittext"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.471"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_nombre_recibe"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/txt_observaciones"
+            android:layout_width="0dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_edittext"
+            android:ems="10"
+            android:hint="@string/lbl_obs_entrega"
+            android:inputType="textPersonName"
+            android:padding="@dimen/button_padding"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/colorTexto"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.46"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+        <ImageButton
+            android:id="@+id/img_llamar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circular"
+            android:cropToPadding="false"
+            android:padding="8dp"
+            android:scaleType="centerCrop"
+            android:tint="@color/colorOk"
+            app:layout_constraintBottom_toBottomOf="@+id/txv_telefono"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txv_telefono"
+            app:srcCompat="@android:drawable/stat_sys_phone_call" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="136dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

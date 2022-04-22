@@ -12,7 +12,7 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.fragment.app.Fragment
 import com.logixs.logixsqr.HomeActivity
 import com.logixs.logixsqr.R
-import com.logixs.logixsqr.ui.entrega.EntregaFragment
+import com.logixs.logixsqr.ui.entrega_listado.EntregaListadoFragment
 import com.logixs.logixsqr.ui.qr_entrega.QrCargaFragment
 import com.logixs.logixsqr.ui.qr_recibo.QrRetiroFragment
 import com.squareup.picasso.Callback
@@ -112,7 +112,8 @@ class HomeFragment : Fragment() {
         imgEntregar.setOnClickListener {
             val homeActivity = (activity as HomeActivity)
             //homeActivity.abrirFragment(QrEntregaFragment(), homeActivity.resources.getString(R.string.menu_qr_entrega))
-            homeActivity.abrirFragment(EntregaFragment(), homeActivity.resources.getString(R.string.menu_qr_entrega))
+            //homeActivity.abrirFragment(EntregaFragment(), homeActivity.resources.getString(R.string.menu_qr_entrega))
+            homeActivity.abrirFragment(EntregaListadoFragment(), homeActivity.resources.getString(R.string.menu_qr_entrega))
         }
 
         imgRetirar.setOnClickListener {

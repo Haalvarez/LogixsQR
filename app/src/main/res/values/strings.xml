@@ -21,8 +21,8 @@
     <string name="menu_ayuda">Ayuda</string>
 
     <string name="mensaje_aceptar">Aceptar</string>
-    <string name="mensaje_error_conexion_servidor">Error</string>
-    <string name="mensaje_error_generico_servidor">Error</string>
+    <string name="mensaje_error_conexion_servidor">Error de comunicación con el servidor. Por favor reintente.</string>
+    <string name="mensaje_error_generico_servidor">Error de comunicación con el servidor. Por favor reintente.</string>
     <string name="mensaje_error_usuario_contrasenia">El DNI o contraseña es inválido</string>
     <string name="mensaje_error_autenticacion">Hubo un error al validar los datos ingresados</string>
     <string name="mensaje_error_permisos_camara">Se deben dar permisos de acceso a la cámara para escanear un QR</string>
@@ -33,6 +33,7 @@
     <string name="mensaje_error_registro_qr">Hubo un error al registrar la información del QR</string>
     <string name="mensaje_registro_qr_ok">Registrado!</string>
     <string name="mensaje_no_hay_envios">No hay envíos</string>
+    <string name="mensaje_coordenadas_no_obtenidas">No se pudo obtener tu ubicación</string>
     <string name="mensaje_error_portapapeles">Error copiado en el portapapeles</string>
 
     <string name="lbl_usuario">ID usuario</string>
@@ -66,4 +67,11 @@
     <string name="msg_nuevo_Token" formatted="true" translatable="false">msg_nuevo_Token</string>
     <string name="menu_MisViajes">Mis Viajes</string>
     <string name="error_network_timeout">error network timeout</string>
+    <string name="lbl_direccion">Dirección</string>
+    <string name="lbl_telefono">Teléfono</string>
+    <string name="lbl_cargar_imagenes">Subir imágen</string>
+    <string name="lbl_sin_imagenes_seleccionadas">No se seleccionaron imagágenes</string>
+    <string name="lbl_imagen_selecciona">1 imágen seleccionada</string>
+    <string name="lbl_imagenes_seleccionadas">%1$s imágen/es seleccionada/s</string>
+    <string name="no_hay_entregas">No tenés entregas pendientes</string>
 </resources>
